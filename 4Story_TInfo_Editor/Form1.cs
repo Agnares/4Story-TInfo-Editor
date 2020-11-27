@@ -134,6 +134,7 @@ namespace _4Story_TInfo_Editor
                 {
                     int index = dataGridView1.Rows.Add();
                     dataGridView1.Rows[index].Cells[dataGridView1.Columns["TextColumn"].Index].Value = Data[listBox1.SelectedIndex].m_pTEXT[i];
+                    dataGridView1.Rows[i].HeaderCell.Value = i.ToString();
                 }
             }
         }
@@ -185,23 +186,33 @@ namespace _4Story_TInfo_Editor
                 listBox1.Items.Add(i);
         }
 
-        private void toolStripTextBox1_DoubleClick(object sender, EventArgs e)
+        private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(toolStripTextBox1.TextLength > 0)
-            {
-                List<int> ItemsFound = new List<int>();
-                ItemsFound.Clear();
-                for (int i = 0; i < Data.Count; i++)
-                    for (int j = 0; j < Data[i].m_pTEXT.Count; j++)
-                        if (Data[i].m_pTEXT[j].Contains(toolStripTextBox1.Text))
-                            if(!ItemsFound.Contains(i))
-                                ItemsFound.Add(i);
+            if (e.KeyChar == (int)Keys.Enter)
+            { 
+                if (toolStripTextBox1.TextLength > 0)
+                {
+                    Dictionary<int, List<int>> ItemsFound = new Dictionary<int, List<int>>();
+                    ItemsFound.Clear();
+                    for (int i = 0; i < Data.Count; i++)
+                    {
+                        List<int> TableItems = new List<int>();
+                        bool bContains = false;
+                        for (int j = 0; j < Data[i].m_pTEXT.Count; j++)
+                        {
+                            if (Data[i].m_pTEXT[j].Contains(toolStripTextBox1.Text))
+                            { 
+                                TableItems.Add(j);
+                                bContains = true;
+                            }
+                        }
+                        if(bContains)
+                            ItemsFound.Add(i, TableItems);
+                    }
 
-                string strItems = "";
-                for (int i = 0; i < ItemsFound.Count; i++)
-                    strItems += "Item: " + ItemsFound[i].ToString() + "\r\n";
-
-                MessageBox.Show(strItems);
+                    Form2 Results = new Form2(ItemsFound, this);
+                    Results.Show();
+                }
             }
         }
 
@@ -210,7 +221,13 @@ namespace _4Story_TInfo_Editor
             int width = ClientRectangle.Width / 2;
             listBox1.Left = 0;
             listBox1.Width = width / 2;
-            dataGridView1.Width = width + listBox1.Width;
+            dataGridView1.Left = 0;
+            dataGridView1.Width = width + width / 2;
+        }
+
+        public void SelectItem(int index)
+        {
+            listBox1.SelectedIndex = index;
         }
     }
 }
