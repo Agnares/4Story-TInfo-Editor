@@ -210,7 +210,7 @@ namespace _4Story_TInfo_Editor
                             ItemsFound.Add(i, TableItems);
                     }
 
-                    Form2 Results = new Form2(ItemsFound, this);
+                    Form2 Results = new Form2(ItemsFound, toolStripTextBox1.Text, this);
                     Results.Show();
                 }
             }

@@ -14,11 +14,12 @@ namespace _4Story_TInfo_Editor
     {
         Form1 mainForm;
         Dictionary<int, List<int>> Items = new Dictionary<int, List<int>>();
-        public Form2(Dictionary<int, List<int>> ItemsFound, Form1 Form)
+        public Form2(Dictionary<int, List<int>> ItemsFound, string SearchFor, Form1 Form)
         {
             InitializeComponent();
             mainForm = Form;
             Items = ItemsFound;
+            this.Text += " for " + SearchFor;
             for (int i = 0; i < Items.Count; i++)
             {
                 KeyValuePair<int, List<int>> Item = Items.ElementAt(i);

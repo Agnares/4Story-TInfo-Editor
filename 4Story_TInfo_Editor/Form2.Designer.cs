@@ -38,7 +38,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(199, 457);
+            this.panel1.Size = new System.Drawing.Size(291, 457);
             this.panel1.TabIndex = 0;
             // 
             // listBox1
@@ -48,7 +48,7 @@
             this.listBox1.IntegralHeight = false;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(199, 457);
+            this.listBox1.Size = new System.Drawing.Size(291, 457);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(199, 457);
+            this.ClientSize = new System.Drawing.Size(291, 457);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
             this.Name = "Form2";
